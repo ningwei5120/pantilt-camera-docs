@@ -1,0 +1,8 @@
+# 请求部分
+string command_name
+float64[] data
+
+---
+# 响应部分
+bool success
+string message

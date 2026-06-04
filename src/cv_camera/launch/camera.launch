@@ -1,0 +1,14 @@
+<launch>
+    <node pkg="cv_camera" type="cv_camera_node" name="camera" output="screen">
+        <param name="flip_image" value="false" />
+        <param name="device_path" value="/dev/v4l/by-path/platform-3610000.xhci-usb-0:2.3.4.4:1.0-video-index0" />
+        <param name="image_width" value="3840" />
+        <param name="image_height" value="2160" />
+        <param name="rate" value="30"/>
+        <param name="camera_info_url" value="file://$(find cv_camera)/calibrationdata/1920x1080.yaml"/>
+        <param name="rescale_camera_info" value="false"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cv_camera)/rviz/single_display.rviz" required ="true"/>
+
+</launch>

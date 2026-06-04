@@ -1,0 +1,32 @@
+# Ignore build and devel directories created by catkin_make or catkin build
+build/
+devel/
+logs/
+cmake-build-debug/
+
+# Ignore all log files
+*.log
+
+# Ignore CLion specific files
+.cmake/
+.idea/
+*.iml
+
+# Ignore package.xml tags file
+tags
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore temporary files that can be generated
+*.swp
+*~
+
+# Ignore other common backup files
+*.*~
+
+# Ignore files related to ROS environment setup
+.devenv

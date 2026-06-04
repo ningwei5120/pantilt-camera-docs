@@ -1,0 +1,7 @@
+<library path="lib/librviz_pantilt_plugin">
+    <class name="rviz_pantilt_plugin/PantiltRvizPanel"
+           type="autolabor_plugin::PantiltRvizPanel"
+           base_class_type="rviz::Panel">
+        <description>This panel widget is used to control the pantilt camera.</description>
+    </class>
+</library>

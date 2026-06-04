@@ -1,0 +1,36 @@
+<launch>
+    <node pkg="cv_camera" type="cv_camera_node" name="cv_camera0" output="screen">
+        <param name="flip_image" value="false" />
+        <param name="device_path" value="/dev/v4l/by-path/platform-14160000.pcie-pci-0004:01:00.0-usb-0:1:1.0-video-index0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="rate" value="25"/>
+    </node>
+
+    <node pkg="cv_camera" type="cv_camera_node" name="cv_camera1" output="screen">
+        <param name="flip_image" value="false" />
+        <param name="device_path" value="/dev/v4l/by-path/platform-14160000.pcie-pci-0004:01:00.0-usb-0:2:1.0-video-index0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="rate" value="25"/>
+    </node>
+
+    <node pkg="cv_camera" type="cv_camera_node" name="cv_camera2" output="screen">
+        <param name="flip_image" value="false" />
+        <param name="device_path" value="/dev/v4l/by-path/platform-14160000.pcie-pci-0004:01:00.0-usb-0:3:1.0-video-index0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="rate" value="25"/>
+    </node>
+
+    <node pkg="cv_camera" type="cv_camera_node" name="cv_camera3" output="screen">
+        <param name="flip_image" value="false" />
+        <param name="device_path" value="/dev/v4l/by-path/platform-14160000.pcie-pci-0004:01:00.0-usb-0:4:1.0-video-index0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="rate" value="25"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cv_camera)/rviz/4camera_display.rviz" required ="true"/>
+
+</launch>

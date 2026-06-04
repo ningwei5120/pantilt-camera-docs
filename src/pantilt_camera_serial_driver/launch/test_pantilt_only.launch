@@ -1,0 +1,46 @@
+<launch>
+    <!-- 云台单独测试 launch 文件 -->
+    <!-- 用于验证云台串口通信是否正常，不依赖摄像头 -->
+    
+    <!-- 参数配置 -->
+    <arg name="port_name" default="/dev/ttyUSB0" 
+         doc="云台串口路径"/>
+    <arg name="baud_rate" default="115200" 
+         doc="串口波特率"/>
+    <arg name="query_rate" default="10" 
+         doc="角度查询频率(Hz)"/>
+    
+    <!-- 云台串口控制节点 -->
+    <node pkg="pantilt_camera_serial" type="pantilt_camera_serial" 
+          name="pantilt_test" output="screen">
+        <param name="port_name" value="$(arg port_name)" />
+        <param name="baud_rate" value="$(arg baud_rate)" />
+        <param name="query_rate" value="$(arg query_rate)" />
+    </node>
+
+    <!-- 实时显示云台角度信息 -->
+    <node pkg="rostopic" type="rostopic" name="angle_echo" 
+          args="echo /pantilt_test/pantilt_angle_info" output="screen"/>
+
+    <!-- 打印测试说明 -->
+    <node pkg="rosconsole" type="echo" name="test_helper" output="screen">
+        <rosparam param="message">
+|
+  测试命令参考：
+  1. 查看云台角度: rostopic echo /pantilt_test/pantilt_angle_info
+  2. 控制云台速度: rostopic pub /pantilt_test/pantilt_vel geometry_msgs/Twist "linear:
+    x: 1.0  # 俯仰速度 [0, 2]
+    y: 0.0
+    z: 0.0
+  angular:
+    x: 0.0
+    y: 0.0
+    z: 1.0"  # 航向速度 [0, 2]
+  3. 回中命令: rosservice call /pantilt_test/send_command "command_name: 'BackToCenter'
+  data: []"
+  4. 设置模式: rosservice call /pantilt_test/send_command "command_name: 'SetLockMode'
+  data: []"
+        </rosparam>
+    </node>
+
+</launch>
